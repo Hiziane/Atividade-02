@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1" author="hiziane">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela PROPRIETARIO">
+            <not>
+                <tableExists tableName="proprietario"/>
+            </not>
+        </preConditions>
+        <createTable tableName="proprietario">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_proprietario"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    <addAutoIncrement tableName="proprietario"
+                      columnName="id"
+                      columnDataType="int"
+                      incrementBy="1"
+                      startWith="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="hiziane">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela MATRIZ">
+            <not>
+                <tableExists tableName="matriz"/>
+            </not>
+        </preConditions>
+        <createTable tableName="matriz">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_matriz"/>
+            </column>
+            <column name="obs" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="matriz"
+                          columnName="id"
+                          columnDataType="int"
+                          incrementBy="1"
+                          startWith="1"/>
+    </changeSet>
+
+</databaseChangeLog>

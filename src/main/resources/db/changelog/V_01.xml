@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1" author="hiziane">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela BEZERRO">
+            <not>
+                <tableExists tableName="bezerro"/>
+            </not>
+        </preConditions>
+        <createTable tableName="bezerro">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_bezerro"/>
+            </column>
+            <column name="proprietario_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="fk_bezerro_proprietario"
+                             referencedTableName="proprietario"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="matriz_id" type="int">
+                <constraints nullable="false"
+                             foreignKeyName="fk_bezerro_matriz"
+                             referencedTableName="matriz"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="registro" type="VARCHAR(255)"/>
+            <column name="sexo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="adapar" type="VARCHAR(255)"/>
+            <column name="valor" type="Float"/>
+            <column name="dataNasc" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dataVenda" type="DATE"/>
+
+        </createTable>
+        <addAutoIncrement tableName="bezerro"
+                          columnName="id"
+                          columnDataType="int"
+                          incrementBy="1"
+                          startWith="1"/>
+    </changeSet>
+
+</databaseChangeLog>
