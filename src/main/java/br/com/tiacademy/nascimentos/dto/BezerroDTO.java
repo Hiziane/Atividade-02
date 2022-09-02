@@ -14,14 +14,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class BezerroDTO implements Serializable {
 
     private Long id;
-    private Long matrizId;
-    private Long proprietarioId;
-    private MatrizDTO matriz;
-    private ProprietarioDTO proprietario;
     private String status;
     private String adapar;
     private LocalDate dataNasc;
@@ -30,5 +25,9 @@ public class BezerroDTO implements Serializable {
     private BigDecimal valor;
     private String registro;
 
+    private Long matrizId;
+    private Long proprietarioId;
+    private MatrizDTO matriz;
+    private ProprietarioDTO proprietario;
 
 }
