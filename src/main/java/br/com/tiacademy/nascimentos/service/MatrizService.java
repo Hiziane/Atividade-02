@@ -11,6 +11,7 @@ public class MatrizService extends CrudService<Matriz,Long> {
 
     @Override
     protected Matriz editarEntidade(Matriz recuperado, Matriz entidade){
+        recuperado.setObs(entidade.getObs());
         recuperado.setStatus(entidade.getStatus());
 
         return recuperado;
