@@ -53,14 +53,13 @@ public abstract class CrudController <T extends CrudDomain<ID>,D,ID> {
     }
 
     @PostMapping
-    public ResponseEntity<D>criar(@RequestBody D dto){
+    public ResponseEntity<D> criar(@RequestBody D dto) {
+         var entidade = converter.dtoParaEntidade(dto);
+         var salvo = service.criar(entidade);
 
-        var entidade = converter.dtoParaEntidade(dto);
-        var salvo= service.criar(entidade);
-
+        //var salvo = service.criar(dto);
         ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
-
-        var uri= builder.path("/{id}").buildAndExpand(salvo.getId()).toUri();
+        var uri = builder.path("/{id}").buildAndExpand(salvo.getId()).toUri();
 
         return ResponseEntity.created(uri).body(converter.entidadeParaDTO(salvo));
     }

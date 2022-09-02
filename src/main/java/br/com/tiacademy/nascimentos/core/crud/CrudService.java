@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class CrudService<T,ID>{
-    //ler
-    //criar
-    //editar
-    //excluir
 
     @Autowired
     protected CrudRepository<T,ID> repository;
@@ -27,9 +23,9 @@ public abstract class CrudService<T,ID>{
     }
 
     public T porId(ID id){
+
         return repository.findById(id).orElse(null);
     }
-
     public T criar(T entidade){
         return repository.save(entidade);
     }
@@ -47,6 +43,5 @@ public abstract class CrudService<T,ID>{
 
         return repository.save(entidadeSalvar);
     }
-
     protected abstract T editarEntidade(T recuperado, T entidade);
 }
