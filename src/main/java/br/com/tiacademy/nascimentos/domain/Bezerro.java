@@ -22,7 +22,9 @@ public class Bezerro implements CrudDomain<Long>, Serializable {
 
     private Long id;
     private String registro;
+    @Column(name="data_nasc")
     private LocalDate dataNasc;
+    @Column(name = "data_venda")
     private LocalDate dataVenda;
     private BigDecimal valor;
     private String sexo;
