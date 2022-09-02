@@ -11,11 +11,23 @@ public class MatrizConverter implements CrudConverter<Matriz, MatrizDTO> {
     @Override
     public MatrizDTO entidadeParaDTO(Matriz entidade) {
 
-        return new MatrizDTO(entidade.getId(),entidade.getObs(),entidade.getStatus());
+        var dto = new MatrizDTO();
+        dto.setId(entidade.getId());
+        dto.setObs(entidade.getObs());
+        dto.setStatus(entidade.getStatus());
+        //return new MatrizDTO(entidade.getId(),entidade.getObs(),entidade.getStatus());
+        return dto;
     }
 
     @Override
     public Matriz dtoParaEntidade(MatrizDTO dto) {
-        return new Matriz(dto.getId(),dto.getObs(),dto.getStatus());
+
+        var matriz = new Matriz();
+        matriz.setId(dto.getId());
+        matriz.setObs(dto.getObs());
+        matriz.setStatus(dto.getStatus());
+
+        return matriz;
+        //return new Matriz(dto.getId(),dto.getObs(),dto.getStatus());
     }
 }

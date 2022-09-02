@@ -10,19 +10,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class
-BezerroConverter implements CrudConverter<Bezerro, BezerroDTO> {
+public class BezerroConverter implements CrudConverter<Bezerro, BezerroDTO> {
 
     private final MatrizConverter matrizConverter;
     private final ProprietarioConverter proprietarioConverter;
-
-    private final MatrizRepository matrizRepository;
-    private final ProprietarioRepository proprietarioRepository;
+    private MatrizRepository matrizRepository;
+    private ProprietarioRepository proprietarioRepository;
 
     @Override
     public BezerroDTO entidadeParaDTO(Bezerro entidade) {
-
         var dto= new BezerroDTO();
+
         dto.setId(entidade.getId());
         dto.setStatus(entidade.getStatus());
         dto.setAdapar(entidade.getAdapar());
@@ -52,6 +50,7 @@ BezerroConverter implements CrudConverter<Bezerro, BezerroDTO> {
         bezerro.setMatriz(matrizRepository.findById(dto.getMatrizId()).orElse(null));
         bezerro.setProprietario(proprietarioRepository.findById(dto.getProprietarioId()).orElse(null));
 
-         return bezerro;
+        //return new Bezerro(dto.getId(),dto.getStatus(),dto.getAdapar(),dto.getDataNasc(),dto.getDataVenda(),dto.getRegistro(),dto.getSexo(),dto.getValor());
+        return bezerro;
     }
 }
